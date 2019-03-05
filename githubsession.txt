@@ -1,0 +1,21 @@
+sudo passwd ec2-user
+sudo passwd root
+
+
+( sudo )yum install git
+
+git --version
+
+   1.Create a directory devops and change to directory devops
+   2.Create files 1.txt,2.txt,3.txt
+   3.Create a git repository with git init
+   4.Check the status  with git status command
+   5. Add 1.txt to git staging git add 1.txt
+   6. set the email and user  
+   git config --global user.email "ramansharma95@gmail.com"
+   git config --global user.name "ramansharma95@gmail.com"
+   7.Check the status , the 1.txt should be in staging
+   8. add all the files to the staging git add .
+   9. commit all the changes git commit -m "Changes are to be saved"
+   10. create an account in GitHub.com and create a repository
+

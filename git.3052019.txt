@@ -1,0 +1,295 @@
+   1.Create a directory devops and change to directory devops
+   2.Create files 1.txt,2.txt,3.txt
+   3.Create a git repository with git init
+   4.Check the status  with git status command
+   5. Add 1.txt to git staging git add 1.txt
+   6. set the email and user  
+   git config --global user.email "ramansharma95@gmail.com"
+   git config --global user.name "ramansharma95@gmail.com"
+   7.Check the status , the 1.txt should be in staging
+   8. add all the files to the staging git add .
+   9. commit all the changes git commit -m "Changes are to be saved"
+   10. create an account in GitHub.com and create a repository
+   11. Connect to the remote repository git remote add origin <<clone>>
+   12. push all the files(1.txt,2.txt,3.txt) to Centeral repository git push origin master
+   13. Check the files on GitHub
+   14. modify 2.txt and commit the changes and push it to git hub and check in the github
+   15.Another developer wants to work on this and want to download all files from Centeral repository
+      for that create a directory call test and cloen the project into that git clone <<clone url>>
+   16. check the files and folders in test directory it should have the remote directory
+   17. change to remotedir folder and create a file 4.txt and push it to the remote repository ( no need to add remote origin)
+   18. Create a directory called newTest and use git init and add some files and write git push command<<share the result>>
+   19. change to dir devops and check the files (it should not have 4.txt)
+   20. update the devops dir with Centeral repository git pull origin master   after this check files( should have 4.txt)
+   21. create 5.txt file in devops folder and push to GitHub and clone directory will not have the 5.txt until we use the pull command
+   22. For Parallel development create a new branch feature1 git branch feature1
+   23. list all the branches git branch (* prefix means current branch)
+   24. Delete a branch  git branch -D feature1
+   25. create again branch feature1 and last commit of your master becomes the first commit for your feature1
+
+
+
+
+git remote add origin https://github.com/ramansharma95/MorningDevops.git
+
+
+: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Tue Mar  5 01:34:23 2019 from 106.193.20.55
+[ec2-user@ip-172-31-30-153 ~]$ su
+Password:
+[root@ip-172-31-30-153 ec2-user]# cd devops
+[root@ip-172-31-30-153 devops]# git remote add origin https://github.com/ramansharma95/MorningDevops.git
+[root@ip-172-31-30-153 devops]# git remote add origin https://github.com/venki19/devopstraining.git
+fatal: remote origin already exists.
+[root@ip-172-31-30-153 devops]# git remote rm  origin https://github.com/ramansharma95/MorningDevops.git
+usage: git remote remove <name>
+
+
+[root@ip-172-31-30-153 devops]# git remote remove  origin https://github.com/ramansharma95/MorningDevops.git
+usage: git remote remove <name>
+
+
+[root@ip-172-31-30-153 devops]# git remote add origin https://github.com/venki19/devopstraining.git
+fatal: remote origin already exists.
+[root@ip-172-31-30-153 devops]# git remote remove https://github.com/ramansharma95/MorningDevops.git
+error: Could not remove config section 'remote.https://github.com/ramansharma95/MorningDevops.git'
+[root@ip-172-31-30-153 devops]# git remote remove origin https://github.com/ramansharma95/MorningDevops.git
+usage: git remote remove <name>
+
+
+[root@ip-172-31-30-153 devops]# git remote remove https://github.com/ramansharma95/MorningDevops.git
+error: Could not remove config section 'remote.https://github.com/ramansharma95/MorningDevops.git'
+[root@ip-172-31-30-153 devops]# git remote rm
+usage: git remote remove <name>
+
+
+[root@ip-172-31-30-153 devops]# git remote rm origin ^C
+[root@ip-172-31-30-153 devops]# git remote rm https://github.com/ramansharma95/MorningDevops.git'
+>
+> y
+> ^C
+[root@ip-172-31-30-153 devops]# cd ..
+[root@ip-172-31-30-153 ec2-user]# cd devtest
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devtest]# git remote add origin https://github.com/venki19/devopstraining.git
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devtest]# git push origin master
+Username for 'https://github.com': venkatesh.rathod5@gmail.com
+Password for 'https://venkatesh.rathod5@gmail.com@github.com':
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 223 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/venki19/devopstraining.git
+ * [new branch]      master -> master
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devtest]# cat>>2.txt
+This is my new version of 2.txt^C
+[root@ip-172-31-30-153 devtest]# cat 2.txt
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devtest]# cat>>2.txt
+This is the test
+^C
+[root@ip-172-31-30-153 devtest]# cat 2.txt
+This is the test
+[root@ip-172-31-30-153 devtest]# git add 2.txt
+[root@ip-172-31-30-153 devtest]# git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       new file:   2.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       3.txt
+[root@ip-172-31-30-153 devtest]# git commit -m "Modified version of 2.txt"
+[master 37cd13a] Modified version of 2.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 2.txt
+[root@ip-172-31-30-153 devtest]# git push origin master
+Username for 'https://github.com': venkatesh.rathod5@gmail.com
+Password for 'https://venkatesh.rathod5@gmail.com@github.com':
+Counting objects: 4, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 298 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/venki19/devopstraining.git
+   b0e0bea..37cd13a  master -> master
+[root@ip-172-31-30-153 devtest]#
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       new file:   2.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       3.txt
+[root@ip-172-31-30-153 devtest]# git commit -m "Modified version of 2.txt"
+[master 37cd13a] Modified version of 2.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 2.txt
+[root@ip-172-31-30-153 devtest]# git push origin master
+Username for 'https://github.com': venkatesh.rathod5@gmail.com
+Password for 'https://venkatesh.rathod5@gmail.com@github.com':
+Counting objects: 4, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 298 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/venki19/devopstraining.git
+   b0e0bea..37cd13a  master -> master
+[root@ip-172-31-30-153 devtest]# ^C
+[root@ip-172-31-30-153 devtest]# clear
+[root@ip-172-31-30-153 devtest]# cd ..
+[root@ip-172-31-30-153 ec2-user]# mkdir test
+[root@ip-172-31-30-153 ec2-user]# cd test
+[root@ip-172-31-30-153 test]# pwd
+/home/ec2-user/test
+[root@ip-172-31-30-153 test]# git clone https://github.com/venki19/devopstraining.git
+Cloning into 'devopstraining'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 6 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+[root@ip-172-31-30-153 test]# ls
+devopstraining
+[root@ip-172-31-30-153 test]# cd devopstraining/
+[root@ip-172-31-30-153 devopstraining]# ls
+1.txt  2.txt
+[root@ip-172-31-30-153 devopstraining]# git status
+# On branch master
+nothing to commit, working directory clean
+[root@ip-172-31-30-153 devopstraining]# cat 2.txt
+This is the test
+[root@ip-172-31-30-153 devopstraining]#
+
+[root@ip-172-31-30-153 ec2-user]# cd test
+[root@ip-172-31-30-153 test]# pwd
+/home/ec2-user/test
+[root@ip-172-31-30-153 test]# git clone https://github.com/venki19/devopstraining.git
+Cloning into 'devopstraining'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 6 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+[root@ip-172-31-30-153 test]# ls
+devopstraining
+[root@ip-172-31-30-153 test]# cd devopstraining/
+[root@ip-172-31-30-153 devopstraining]# ls
+1.txt  2.txt
+[root@ip-172-31-30-153 devopstraining]# git status
+# On branch master
+nothing to commit, working directory clean
+[root@ip-172-31-30-153 devopstraining]# cat 2.txt
+This is the test
+[root@ip-172-31-30-153 devopstraining]# ^C
+[root@ip-172-31-30-153 devopstraining]# clear
+[root@ip-172-31-30-153 devopstraining]# ls
+1.txt  2.txt
+[root@ip-172-31-30-153 devopstraining]# touch 4.txt
+[root@ip-172-31-30-153 devopstraining]# ls
+1.txt  2.txt  4.txt
+[root@ip-172-31-30-153 devopstraining]# git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       4.txt
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-30-153 devopstraining]# gti config color.u true
+bash: gti: command not found
+[root@ip-172-31-30-153 devopstraining]# gti config color.ui true
+bash: gti: command not found
+[root@ip-172-31-30-153 devopstraining]# git config color.ui true
+[root@ip-172-31-30-153 devopstraining]# git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       4.txt
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-30-153 devopstraining]# git add .
+[root@ip-172-31-30-153 devopstraining]# git commit -m "added 4.txt file"
+[master 486840b] added 4.txt file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 4.txt
+[root@ip-172-31-30-153 devopstraining]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[root@ip-172-31-30-153 devopstraining]# git push origin master
+Username for 'https://github.com': venkatesh.rathod5@gmail.com
+Password for 'https://venkatesh.rathod5@gmail.com       @github.com':
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/venki19/devopstraining.git/'
+[root@ip-172-31-30-153 devopstraining]# git push origin master
+Username for 'https://github.com': venkatesh.rathod5@gmail.com
+Password for 'https://venkatesh.rathod5@gmail.com@github.com':
+Counting objects: 3, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 273 bytes | 0 bytes/s, done.
+Total 2 (delta 0), reused 0 (delta 0)
+To https://github.com/venki19/devopstraining.git
+   37cd13a..486840b  master -> master
+[root@ip-172-31-30-153 devopstraining]# cd ..
+[root@ip-172-31-30-153 test]# cd ..
+[root@ip-172-31-30-153 ec2-user]# cd devtest
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devtest]# git pull origin master
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 2 (delta 0), reused 2 (delta 0), pack-reused 0
+Unpacking objects: 100% (2/2), done.
+From https://github.com/venki19/devopstraining
+ * branch            master     -> FETCH_HEAD
+Updating 37cd13a..486840b
+Fast-forward
+ 4.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 4.txt
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt  4.txt
+[root@ip-172-31-30-153 devtest]#
+[root@ip-172-31-30-153 devtest]#
+[root@ip-172-31-30-153 devtest]# gti branch
+bash: gti: command not found
+[root@ip-172-31-30-153 devtest]# git branch
+* master
+[root@ip-172-31-30-153 devtest]# git branch feature1
+[root@ip-172-31-30-153 devtest]# git branch
+  feature1
+* master
+[root@ip-172-31-30-153 devtest]# git checkout feature1
+Switched to branch 'feature1'
+[root@ip-172-31-30-153 devtest]# git branch
+* feature1
+  master
+[root@ip-172-31-30-153 devtest]# ls
+1.txt  2.txt  3.txt  4.txt
+[root@ip-172-31-30-153 devtest]# git checkout master
+Switched to branch 'master'
+[root@ip-172-31-30-153 devtest]# git branch
+  feature1
+* master
+[root@ip-172-31-30-153 devtest]# git baranch -D feature1
+git: 'baranch' is not a git command. See 'git --help'.
+
+Did you mean this?
+        branch
+[root@ip-172-31-30-153 devtest]# git branch -D feature1
+Deleted branch feature1 (was 486840b).
+[root@ip-172-31-30-153 devtest]# git branch
+* master
+[root@ip-172-31-30-153 devtest]#
+

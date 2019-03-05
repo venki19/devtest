@@ -1,0 +1,153 @@
+
+[root@ip-172-31-30-153 ec2-user]# mkdir devops
+[root@ip-172-31-30-153 ec2-user]# cd devops
+[root@ip-172-31-30-153 devops]# pwd
+/home/ec2-user/devops
+[root@ip-172-31-30-153 devops]# touch 1.txt
+[root@ip-172-31-30-153 devops]# touch 2.txt
+[root@ip-172-31-30-153 devops]# touch 3.txt
+[root@ip-172-31-30-153 devops]#
+[root@ip-172-31-30-153 devops]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devops]# git init
+Initialized empty Git repository in /home/ec2-user/devops/.git/
+[root@ip-172-31-30-153 devops]# ls
+1.txt  2.txt  3.txt
+[root@ip-172-31-30-153 devops]# ls -la
+total 0
+drwxr-xr-x. 3 root     root      57 Mar  4 02:05 .
+drwx------. 4 ec2-user ec2-user 109 Mar  4 02:03 ..
+-rw-r--r--. 1 root     root       0 Mar  4 02:04 1.txt
+-rw-r--r--. 1 root     root       0 Mar  4 02:04 2.txt
+-rw-r--r--. 1 root     root       0 Mar  4 02:04 3.txt
+drwxr-xr-x. 7 root     root     119 Mar  4 02:05 .git
+[root@ip-172-31-30-153 devops]# ls -la .git
+total 12
+drwxr-xr-x. 7 root root 119 Mar  4 02:05 .
+drwxr-xr-x. 3 root root  57 Mar  4 02:05 ..
+drwxr-xr-x. 2 root root   6 Mar  4 02:05 branches
+-rw-r--r--. 1 root root  92 Mar  4 02:05 config
+-rw-r--r--. 1 root root  73 Mar  4 02:05 description
+-rw-r--r--. 1 root root  23 Mar  4 02:05 HEAD
+drwxr-xr-x. 2 root root 242 Mar  4 02:05 hooks
+drwxr-xr-x. 2 root root  21 Mar  4 02:05 info
+drwxr-xr-x. 4 root root  30 Mar  4 02:05 objects
+drwxr-xr-x. 4 root root  31 Mar  4 02:05 refs
+[root@ip-172-31-30-153 devops]#
+total 0
+drwxr-xr-x. 3 root     root      57 Mar  4 02:05 .
+drwx------. 4 ec2-user ec2-user 109 Mar  4 02:03 ..
+-rw-r--r--. 1 root     root       0 Mar  4 02:04 1.txt
+-rw-r--r--. 1 root     root       0 Mar  4 02:04 2.txt
+-rw-r--r--. 1 root     root       0 Mar  4 02:04 3.txt
+drwxr-xr-x. 7 root     root     119 Mar  4 02:05 .git
+[root@ip-172-31-30-153 devops]# ls -la .git
+total 12
+drwxr-xr-x. 7 root root 119 Mar  4 02:05 .
+drwxr-xr-x. 3 root root  57 Mar  4 02:05 ..
+drwxr-xr-x. 2 root root   6 Mar  4 02:05 branches
+-rw-r--r--. 1 root root  92 Mar  4 02:05 config
+-rw-r--r--. 1 root root  73 Mar  4 02:05 description
+-rw-r--r--. 1 root root  23 Mar  4 02:05 HEAD
+drwxr-xr-x. 2 root root 242 Mar  4 02:05 hooks
+drwxr-xr-x. 2 root root  21 Mar  4 02:05 info
+drwxr-xr-x. 4 root root  30 Mar  4 02:05 objects
+drwxr-xr-x. 4 root root  31 Mar  4 02:05 refs
+[root@ip-172-31-30-153 devops]# ^C
+[root@ip-172-31-30-153 devops]# cls
+bash: cls: command not found
+[root@ip-172-31-30-153 devops]# clear
+[root@ip-172-31-30-153 devops]# git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       1.txt
+#       2.txt
+#       3.txt
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-30-153 devops]# git config color.ui true
+[root@ip-172-31-30-153 devops]# git config color.ui true
+[root@ip-172-31-30-153 devops]# git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       1.txt
+#       2.txt
+#       3.txt
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-30-153 devops]#
+
+[root@ip-172-31-30-153 devops]# git add 1.txt
+[root@ip-172-31-30-153 devops]# git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#       new file:   1.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       2.txt
+#       3.txt
+[root@ip-172-31-30-153 devops]# git config --global user.email "venkatesh.rathod5@gmail.com"
+[root@ip-172-31-30-153 devops]# git config --global user.name "Venkatesh Rathod"
+[root@ip-172-31-30-153 devops]#
+[root@ip-172-31-30-153 devops]# git add 1.txt
+[root@ip-172-31-30-153 devops]# git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#       new file:   1.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       2.txt
+#       3.txt
+[root@ip-172-31-30-153 devops]# git config --global user.email "venkatesh.rathod5@gmail.com"
+[root@ip-172-31-30-153 devops]# git config --global user.name "Venkatesh Rathod"
+[root@ip-172-31-30-153 devops]# ^C
+[root@ip-172-31-30-153 devops]# clear
+[root@ip-172-31-30-153 devops]# git add .
+[root@ip-172-31-30-153 devops]# git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#       new file:   1.txt
+#       new file:   2.txt
+#       new file:   3.txt
+#
+[root@ip-172-31-30-153 devops]# git commit -m "This is the first commit all three txt files are commited"
+[master (root-commit) db9e838] This is the first commit all three txt files are commited
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 1.txt
+ create mode 100644 2.txt
+ create mode 100644 3.txt
+[root@ip-172-31-30-153 devops]# git status
+# On branch master
+nothing to commit, working directory clean
+[root@ip-172-31-30-153 devops]#
+
+
+
+
