@@ -1,0 +1,35 @@
+sudo passwd root
+apt-get update
+
+apt-get install docker.io
+docker --version
+docker pull ubuntu
+docker images
+when ur image is called container
+
+docker run -it -d ubuntu    iteractive session, dimens
+docker stop 75efc3e75cb0
+docker kill 327c1b643ba5
+docker ps (processes)
+docker exec -it 75efc3e75cb0 bash
+docker ps -a --to see all the containers 
+docker rm 75efc3e75cb0 
+
+---file created and once 
+
+https://hub.docker.com/ --create an account 
+
+docker commit a3e24d61a244 -it -p myubuntuimage  --create image with port mapping 
+docker rmi myubuntuimage  ---remove image 
+
+apt-get update
+apt-get install apache2
+
+docker commit a3e24d61a244 rathodv/ubuntuapache
+docker run -it -p82:80 -d 4842ac876ab5
+docker commit a3e24d61a244 -it -p 84:80 -d rathodv/ubuntuwithapache
+
+
+
+
+
