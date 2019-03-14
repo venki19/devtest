@@ -1,0 +1,40 @@
+docker rm -f 
+/home/ubuntu# docker run -it -v /home/ubuntu/Bindmount:/demo1 -d ubuntu
+
+Docker Storage
+-------------------
+Data will removed if container is deleted so docker storage is used to keep the data even if container is deleted
+Types of Docker
+Docker Volume :- is a mountable entity which can be used to store data, in the docker file system
+                docker volume  create my-vol
+    it is software not the hardware component it can be attached and deattached
+    docker volume create demo-vol
+    docker volume ls     //to list the volumes
+    
+         docker run -it --mount source=demo-vol,destination=/app -d ubuntu
+     remove the container
+     attach volume to another container
+Bind Mounts :- mounts a directory from host machine to the container
+             To mount the directory which on the host machine to container
+    docker run -it -v /home/ubuntu/mount:/demo -d ubuntu
+
+docker rm -f $(docker ps -a -q)
+
+Comminicating the containers
+
+cat /etc/hosts
+
+docker run -it --name container1 -d ubuntu
+ docker run -it --name container2 --link container1 -d ubuntu
+
+apt-get install iputils-ping
+
+Micro Services
+Monolithic application
+
+
+
+
+
+
+
