@@ -31,6 +31,47 @@ docker commit a3e24d61a244 -it -p 84:80 -d rathodv/ubuntuwithapache
 docker run -it -p 82:80 -d --name conatainer1 rathodv/ubuntuwithapache 
 
 docker login
+docker push rathodv/ubuntuwithapache
+check in the docker hub
+
+------------Docker File
+
+FROM :- is define the base image on which we are buildng ef FROM ubuntu
+ADD:- is used to add the files to the container being built, ADD<source><destination in the container>
+      ADD . /var/www/html
+RUN:- is used to add layers to the base image, by installing componenets. Each RUN statement add a new layer to the docker image
+      RUN apt-get update
+      RUN apt-get -y install apache2
+CMD :- is used to run command on start of the container. These commands run when there is no argument specified while running the              container 
+       CMD apachectl -D FOREGROUND
+
+ENTRYPOINT :- is ud=sed to strictly run the commands the moment the container initializes. The difference between CMD and ENTRYPOINT is,               ENTRYPOINT runs irrespective of the fact that weather argument is specified or not 
+              ENTRYPOINT apachect1 -D FOREGROUND
+ENV : - is used to define the environment in container 
+       ENV name Devops venki
+       
+       
+ ---- Create a docker file
+
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y apache2
+ADD . /var/www/html
+ENTRYPOINT apache2 -D FOREGROUND
+ENV name DEVOPS
+
+Create a html file 
+
+<html>
+        <head><title>MY Docker web page</title></head>
+<body>
+    <h1>Testing docker file execution</h1>
+</body>
+</html>
+
+Run docker build
+
+docker build . -t new_dockerfile
 
 
-
+ 
