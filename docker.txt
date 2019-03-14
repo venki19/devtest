@@ -28,8 +28,9 @@ apt-get install apache2
 docker commit a3e24d61a244 rathodv/ubuntuapache
 docker run -it -p82:80 -d 4842ac876ab5
 docker commit a3e24d61a244 -it -p 84:80 -d rathodv/ubuntuwithapache
+docker run -it -p 82:80 -d --name conatainer1 rathodv/ubuntuwithapache 
 
-
+docker login
 
 
 
