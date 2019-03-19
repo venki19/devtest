@@ -1,0 +1,35 @@
+
+Docker volume --help
+        Usage:  docker volume COMMAND
+
+          Manage volumes
+
+          Commands:
+            create      Create a volume
+            inspect     Display detailed information on one or more volumes
+            ls          List volumes
+            prune       Remove all unused local volumes
+            rm          Remove one or more volumes
+
+docker volume ls
+docker volume create myvolume1
+docker volume create myvolume2
+
+docker volume rm myvolume2
+docker volume prune
+
+docker container create --name mycontainername -it --mount source=myvolume1, target=/foldername imagename
+
+docker container create --name venkicont -it --mount source=myvolume1,target=/app rathodv/ubuntuapache
+
+docker container start venkicont
+
+docker exec -it venkicont bash
+
+docker container cp textfile.txt venkicont:/app/venki
+
+docker comtainer inspet venkicont
+
+docker stop $(docker ps --all -q)
+
+docker rm $(docker ps -a -q)
