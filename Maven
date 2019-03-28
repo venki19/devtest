@@ -1,0 +1,66 @@
+package test.test;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import org.testng.TestListenerAdapter;
+
+import org.testng.annotations.Test;
+
+import com.beust.testng.TestNG;
+
+public class App 
+
+{
+
+	@Test    public  void Testing()
+
+    {
+
+    	//System.setProperty("webdriver.chrome.driver", "C:\\Temp\\chromedriver.exe");
+
+		System.setProperty("webdriver.chrome.driver", "/home/ubuntu/chromedriver");
+
+    	ChromeOptions options= new ChromeOptions();
+
+    	options.addArguments("--headless");
+
+    	WebDriver driver = new ChromeDriver(options);
+
+    	//WebDriver driver = new ChromeDriver();
+
+    	driver.get("http://localhost/");
+
+    	driver.findElement(By.id("txtname")).sendKeys("Hello");
+
+    }
+
+	public static void main(String[] args) {
+
+testng.addListener(tla);
+
+		testng.run();
+
+	}
+
+	
+
+}
+
+	
+
+		// TODO Auto-generated method stub
+
+		TestListenerAdapter tla= new TestListenerAdapter();
+
+		TestNG testng= new TestNG();
+
+		testng.setTestClasses(new Class[] { App.class});
+    
+    
+    
