@@ -1,0 +1,62 @@
+Working with Inventory
+
+Hosts and Groups
+
+## Default inventry on hosts file /etc/ansible/hosts
+
+$ansible all --list-hosts
+$ansible all -m ping 
+$ansible webservers -m ping
+$ansible webservers -m shell -a "uptime"
+
+## use you own hosts file which may be located anywhere only have to specify the absolute path
+
+$ansible -i /usr/ubuntu/hostfile webservers -m shell
+
+The inventory file can be in one of many formats, depending on the inventory plugins you have. 
+For this example, the format for /etc/ansible/hosts is an INI-like (one of Ansible’s defaults) and looks like this:
+
+          mail.example.com
+
+          [webservers]
+          foo.example.com
+          bar.example.com
+
+          [dbservers]
+          one.example.com
+          two.example.com
+          three.example.com
+          
+ The headings in brackets are group names, which are used in classifying systems and deciding what systems you are controlling at what times and for what purpose.
+ 
+              A YAML version would look like:
+
+                    all:
+                      hosts:
+                        mail.example.com:
+                      children:
+                        webservers:
+                          hosts:
+                            foo.example.com:
+                            bar.example.com:
+                        dbservers:
+                          hosts:
+                            one.example.com:
+                            two.example.com:
+                            three.example.com:
+  Creating boto connection:
+  
+  1) Create user in aws
+  2) give power permission
+  3) install python : 
+          yum install -y python python-dev python-pip
+      or  apt-get install -y python python-dev python-pip
+      
+      pip install boto
+   4) Configure environment variable
+      export BOTO_CONFIG='/root/boto_env/.boto'
+    5) vi /root/boto_env/.boto
+          [Credentials]
+          aws_access_key_id = <your_access_key_here>
+          aws_secret_access_key = <your_secret_key_here>
+    6) chmod 600 .boto
