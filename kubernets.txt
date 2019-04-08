@@ -1,6 +1,51 @@
+Features:
+
+Pods -- handles master and slave
+Replication controller
+storage managment
+Resourse Monitering
+HealthChecks
+Service Discovery
+Networking
+Secret Management
+Rolling updates
+
+Kubernated is cluster with Master abd slave node
+
+Master component 
 
 # Build an ubuntu server
 # update the server
 
 $sudo apt-get update
+
+# install docker on both machines
+
+$sudo apt-get install docker.io
+
+
+apt-get update && apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+cat <<EOF >/etc/apt/sources.list.d/kubernetes.list deb https://apt.kubernetes.io/ kubernetes-xenial main EOF
+
+
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+apt-mark hold kubelet kubeadm kubectl
+
+
+kubeadm init --apiserver-advertise-address=172.31.14.6 --pod-network-cidr=192.168.0.0/16
+
+kubeadm join 172.31.14.6:6443 --token xoe7q8.0elt2qa9qvf5shkk \
+--discovery-token-ca-cert-hash sha256:38fa35eaca37d3b89cf406538054fcc990048298363c89fab51a4bef63472d87
+
+
+ mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+
 
