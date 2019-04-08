@@ -1,0 +1,6 @@
+
+# Build an ubuntu server
+# update the server
+
+$sudo apt-get update
+
