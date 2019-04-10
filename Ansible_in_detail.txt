@@ -1,0 +1,18 @@
+Redhat os:
+
+$yum update
+$yum install ansible
+$yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$yum update
+$yum install ansible
+$ansible --version
+
+$cd /etc/ansible
+
+Generate the ssh key from below 
+
+$ssh-keygen
+
+$cat /root/.ssh/id_rsa.pub
+
+$vi /etc/hosts --add ip address of the slave machines
