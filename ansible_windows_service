@@ -1,0 +1,39 @@
+
+##Creating a service
+
+#startservice.yml
+---
+- hosts: win
+  tasks:
+    - name: Start Service
+      win_service:
+        name: Jenkins
+        state: restarted
+    - name: Create a new service
+      win_service:
+        name: CSWindowsService
+        path: C:\Users\venki\Downloads\A basic Windows service in C# (CSWindowsService)\C#\Debug\CSWindowsService.exe
+        state: started
+
+## Removing the service
+
+
+---
+ - hosts: win
+   tasks:
+     - name: Remove a service
+       win_service:
+         name: CSWindowsService
+         state: absent
+         
+## Stopping the service
+
+---
+ - hosts: win
+   tasks:
+     - name: Remove a service
+       win_service:
+         name: CSWindowsService
+         state: stopped
+         
+ 
