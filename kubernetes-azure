@@ -1,0 +1,81 @@
+az provider register -n Microsoft.ContainerService
+az group create --name venki-aks --location eastus
+
+az group list
+az aks create --resource-group venki-aks --name kubelive --node-count 1 --generate-ssh-keys
+
+{
+  "aadProfile": null,
+  "addonProfiles": null,
+  "agentPoolProfiles": [
+    {
+      "count": 1,--- no of nodes
+      "maxPods": 110, -- maximum scalable
+      "name": "nodepool1", -- name of the pool
+      "osDiskSizeGb": 100, -- size of the osdisk
+      "osType": "Linux",  -- Type of the OS
+      "storageProfile": "ManagedDisks", -- Type of storage disk 
+      "vmSize": "Standard_DS2_v2", --- azure VM Size
+      "vnetSubnetId": null --- Vnet configured backend
+    }
+  ],
+"dnsPrefix": "kubelive-venki-aks-e7a782",
+  "enableRbac": true,
+  "fqdn": "kubelive-venki-aks-e7a782-11708ac6.hcp.eastus.azmk8s.io",
+  "id": "/subscriptions/e7a782a0-b52a-4083-8914-168a5d463b8d/resourcegroups/venki-aks/providers/Microsoft.ContainerService/managedClusters/kubelive",
+  "kubernetesVersion": "1.12.7",
+  "linuxProfile": {
+    "adminUsername": "azureuser",
+    "ssh": {
+      "publicKeys": [
+        {
+          "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZnJp//e+Zh3WrnzL1F9PdRWenYW20q1CKNRGmzv1kU3I7WfBZT7AZ8mqXSEtIQL/l52y3vqSaZtnOCQB0apbH3AY306uRMreMYwMQVndl+Q+IfikShztjHL92GFLcD3V3/IF3iLDyOYOpEclJ04c2WBpAZ5qgZcS4yaHxooNnWoHFekVZNVvAYZDkZBnLFa077Mf885mQdJRCJzHosFQSEsph0lY94GPIWpubaupPrIWN2TU3ZTpEC9zfBQ58P3dBqtTFhLDYGJtWr5y1xKzXCjmZUTOqVsi9MwixhutSzEx3RpLNvBO3q5+RAeIX51rJyU2V2xnvFcfUABXZkiLv"
+        }
+      ]
+    }
+  },
+  "location": "eastus",
+  "name": "kubelive",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "dockerBridgeCidr": "172.17.0.1/16",
+    "networkPlugin": "kubenet",
+    "networkPolicy": null,
+    "podCidr": "10.244.0.0/16",
+    "serviceCidr": "10.0.0.0/16"
+  },
+  "nodeResourceGroup": "MC_venki-aks_kubelive_eastus",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "venki-aks",
+  "servicePrincipalProfile": {
+    "clientId": "612ab0d3-3214-42f1-a26e-c6ae46859d1c",
+    "secret": null
+  },
+  "tags": null,
+  "type": "Microsoft.ContainerService/ManagedClusters"
+}
+
+
+$az aks list 
+$az aks install-cli
+$set PATH=%PATH%;'C:\Users\venki\.azure-kubectl' or $$env:path += 'C:\Users\venki\.azure-kubectl'
+PS C:\Users\venki> cd .\.kube\
+PS C:\Users\venki\.kube> ls
+$ kubectl get nodes
+$ kubectl get cs 
+$ kubectl cluster-info
+
+$ kubectl create -f azure_vote.yaml
+
+$ kubectl get po --watch
+$ kubectl get svc --watch
+
+Goto to azure portal take the load balancer public ip and verify the application
+
+$ kubectl run --image=nginx myweb
+$ kubectl get pods
+$ kube expose pod myweb
+
+
+
+
