@@ -1,0 +1,394 @@
+PS C:\Users\venki> git --version
+git version 2.21.0.windows.1
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\venki> git --version
+git version 2.21.0.windows.1
+
+PS C:\Users\venki> git clone https://github.com/Azure-Samples/azure-voting-app-redis.git
+Cloning into 'azure-voting-app-redis'...
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (4/4), done.
+Receiving objects:  45% (72/159)    1 (delta 0), pack-reused 155
+Receiving objects: 100% (159/159), 31.98 KiB | 1.68 MiB/s, done.
+Resolving deltas: 100% (70/70), done.
+
+
+PS C:\Users\venki> cd .\azure-voting-app-redis\
+
+PS C:\Users\venki\azure-voting-app-redis> ls
+
+
+    Directory: C:\Users\venki\azure-voting-app-redis
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        4/25/2019  10:13 AM                azure-vote
+d-----        4/25/2019  10:13 AM                jenkins-tutorial
+-a----        4/25/2019  10:13 AM           1258 .gitignore
+-a----        4/25/2019  10:13 AM           1374 azure-vote-all-in-one-redis.yaml
+-a----        4/25/2019  10:13 AM            331 docker-compose.yaml
+-a----        4/25/2019  10:13 AM           1183 LICENSE
+-a----        4/25/2019  10:13 AM           1721 README.md
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker-compose up -d
+
+Creating network "azure-voting-app-redis_default" with the default driver
+Pulling azure-vote-back (redis:)...
+latest: Pulling from library/redis
+27833a3ba0a5: Pull complete
+cde8019a4b43: Pull complete
+97a473b37fb2: Pull complete
+c6fe0dfbb7e3: Pull complete
+39c8f5ba1240: Pull complete
+cfbdd870cf75: Pull complete
+Building azure-vote-front
+Step 1/3 : FROM tiangolo/uwsgi-nginx-flask:python3.6
+python3.6: Pulling from tiangolo/uwsgi-nginx-flask
+ab1fc7e4bf91: Pull complete
+35fba333ff52: Pull complete
+f0cb1fa13079: Pull complete
+3d1dd648b5ad: Pull complete
+49f7a0920ce1: Pull complete
+4709e515313d: Pull complete
+9f1758f5a166: Pull complete
+bbccfd3ef033: Pull complete
+0752403d51fb: Pull complete
+bdab9b8a0df1: Pull complete
+cb8acb3fb2b7: Pull complete
+4cb635663de1: Pull complete
+3eaafc6c424f: Pull complete
+926084b32fc2: Pull complete
+ebe0305ae436: Pull complete
+11a453b58fcc: Pull complete
+d1b074b28d36: Pull complete
+908a406667a5: Pull complete
+8d4477048b5c: Pull complete
+c1d7d9974581: Pull complete
+099bd7b760f1: Pull complete
+236d650027dd: Pull complete
+db27516c4704: Pull complete
+7dcc8ed1373f: Pull complete
+63334f8598bc: Pull complete
+1d26e26248b2: Pull complete
+Digest: sha256:19266a919c4124ad865ad4d92f1fbc52097f04ab5f3869d4bf52ac571be96e8e
+Status: Downloaded newer image for tiangolo/uwsgi-nginx-flask:python3.6
+ ---> 3b923af93a90
+Step 2/3 : RUN pip install redis
+ ---> Running in 2cd30d822667
+Collecting redis
+  Downloading https://files.pythonhosted.org/packages/ac/a7/cff10cc5f1180834a3ed564d148fb4329c989cbb1f2e196fc9a10fa07072/redis-3.2.1-py2.py3-none-any.whl (65kB)
+Installing collected packages: redis
+Successfully installed redis-3.2.1
+You are using pip version 19.0.1, however version 19.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+Removing intermediate container 2cd30d822667
+ ---> 5b22a4101aa3
+Step 3/3 : ADD /azure-vote /app
+ ---> 94b6d9334212
+Successfully built 94b6d9334212
+Successfully tagged azure-vote-front:latest
+WARNING: Image for service azure-vote-front was built because it did not already exist. To rebuild this image you must use `docker-compose build` or
+`docker-compose up --build`.
+Creating azure-vote-front ... done
+Creating azure-vote-back  ... done
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker images
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+azure-vote-front             latest              94b6d9334212        21 seconds ago      950MB
+redis                        latest              a55fbf438dfd        4 weeks ago         95MB
+ubuntu                       latest              94e814e2efa8        6 weeks ago         88.9MB
+tiangolo/uwsgi-nginx-flask   python3.6           3b923af93a90        2 months ago        949MB
+hello-world                  latest              fce289e99eb9        3 months ago        1.84kB
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                           NAMES
+d8778b4a2fbe        redis               "docker-entrypoint.s…"   53 seconds ago      Up 43 seconds       0.0.0.0:6379->6379/tcp          azure-vote-back
+29cd972a87cf        azure-vote-front    "/entrypoint.sh /sta…"   53 seconds ago      Up 46 seconds       443/tcp, 0.0.0.0:8080->80/tcp   azure-vote-front
+2f04735987c4        ubuntu              "/bin/bash"              37 minutes ago      Up 37 minutes                                       reverent_liskov
+
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker-compose down
+Stopping azure-vote-back  ... done
+Stopping azure-vote-front ... done
+Removing azure-vote-back  ... done
+Removing azure-vote-front ... done
+Removing network azure-voting-app-redis_default
+
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2f04735987c4        ubuntu              "/bin/bash"         39 minutes ago      Up 38 minutes                           reverent_liskov
+
+
+PS C:\Users\venki\azure-voting-app-redis> az --version
+azure-cli                         2.0.63
+
+acr                                2.2.5
+acs                               2.3.22
+advisor                            2.0.0
+ams                                0.4.5
+appservice                        0.2.18
+backup                             1.2.4
+batch                              4.0.0
+batchai                            0.4.8
+billing                            0.2.1
+botservice                        0.1.10
+cdn                                0.2.3
+cloud                              2.1.1
+cognitiveservices                  0.2.5
+command-modules-nspkg               2.0.2
+configure                         2.0.22
+consumption                        0.4.2
+container                         0.3.16
+core                              2.0.63
+cosmosdb                          0.2.10
+deploymentmanager                  0.1.0
+dla                                0.2.5
+
+
+PS C:\Users\venki\azure-voting-app-redis> az group create --name myResourceGroup --location eastus
+{
+  "id": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourceGroups/myResourceGroup",
+  "location": "eastus",
+  "managedBy": null,
+  "name": "myResourceGroup",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": null
+}
+
+
+PS C:\Users\venki\azure-voting-app-redis> az acr create --resource-group myResourceGroup --name venkiacr --sku Basic
+{
+  "adminUserEnabled": false,
+  "creationDate": "2019-04-25T10:31:21.956680+00:00",
+  "id": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/venkiacr",
+  "location": "eastus",
+  "loginServer": "venkiacr.azurecr.io",
+  "name": "venkiacr",
+  "networkRuleSet": null,
+  "provisioningState": "Succeeded",
+  "resourceGroup": "myResourceGroup",
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "status": null,
+  "storageAccount": null,
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries"
+}
+
+
+PS C:\Users\venki\azure-voting-app-redis> az acr login --name venkiacr
+Login Succeeded
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker images
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+azure-vote-front             latest              94b6d9334212        17 minutes ago      950MB
+redis                        latest              a55fbf438dfd        4 weeks ago         95MB
+ubuntu                       latest              94e814e2efa8        6 weeks ago         88.9MB
+tiangolo/uwsgi-nginx-flask   python3.6           3b923af93a90        2 months ago        949MB
+hello-world                  latest              fce289e99eb9        3 months ago        1.84kB
+
+
+PS C:\Users\venki\azure-voting-app-redis> az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
+AcrLoginServer
+-------------------
+venkiacr.azurecr.io
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker tag azure-vote-front venkiacr.azurecr.io/azure-vote-front:v1
+
+PS C:\Users\venki\azure-voting-app-redis> docker images
+REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
+azure-vote-front                       latest              94b6d9334212        20 minutes ago      950MB
+venkiacr.azurecr.io/azure-vote-front   v1                  94b6d9334212        20 minutes ago      950MB
+redis                                  latest              a55fbf438dfd        4 weeks ago         95MB
+ubuntu                                 latest              94e814e2efa8        6 weeks ago         88.9MB
+tiangolo/uwsgi-nginx-flask             python3.6           3b923af93a90        2 months ago        949MB
+hello-world                            latest              fce289e99eb9        3 months ago        1.84kB
+
+
+PS C:\Users\venki\azure-voting-app-redis> docker push venkiacr.azurecr.io/azure-vote-front
+The push refers to repository [venkiacr.azurecr.io/azure-vote-front]
+7cd5ce9d89f4: Pushed
+79ef05d4d5e2: Pushed
+f1dd186bf5eb: Pushed
+c592491fcab1: Pushed
+1ca7cd51ceeb: Pushed
+643259079b32: Pushed
+0f1e35d00fa7: Pushed
+172a5377ee25: Pushed
+db87404f5d3f: Pushed
+1b655c784a8d: Pushed
+d168ac8a1095: Pushed
+4c13c63751a1: Pushed
+e09c150c6aa8: Pushed
+5c1068d126aa: Pushed
+44ff51fbafa7: Pushed
+c706028b53c1: Pushed
+a67398d274c8: Pushed
+3b520191885f: Pushed
+08092d60523f: Pushed
+d9499c02e387: Pushed
+d47b056b8c3a: Pushed
+3aecb0863872: Pushed
+72e1f0f78475: Pushed
+56a89222b908: Pushed
+a89464ad2a8f: Pushed
+76dfa41f0a1d: Pushed
+c240c542ed55: Pushed
+badfbcebf7f8: Pushed
+v1: digest: sha256:5518a90014e8c56c75ba63b5c449416c25620f9f22ed615417774918e6b607a5 size: 6175
+
+
+PS C:\Users\venki\azure-voting-app-redis> az acr repository list --name venkiacr --output table
+Result
+----------------
+azure-vote-front
+
+
+PS C:\Users\venki\azure-voting-app-redis> az acr repository show-tags --name venkiacr --repository azure-vote-front --output table
+Result
+--------
+v1
+
+
+PS C:\Users\venki\azure-voting-app-redis> az ad sp create-for-rbac --skip-assignment
+{
+  "appId": "f0891142-b07f-42c5-a0c6-1cf119adadad",
+  "displayName": "azure-cli-2019-04-25-10-51-03",
+  "name": "http://azure-cli-2019-04-25-10-51-03",
+  "password": "fd3e883c-7f29-4703-a0a3-ba599da2f4a1",
+  "tenant": "66fff991-5b68-4c4a-8995-eaf382884219"
+}
+
+
+PS C:\Users\venki\azure-voting-app-redis> az acr show --resource-group myResourceGroup --name venkiacr --query "id" --output tsv
+/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/venkiacr
+
+
+PS C:\Users\venki\azure-voting-app-redis> az role assignment create --assignee f0891142-b07f-42c5-a0c6-1cf119adadad  --scope /subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/venkiacr --role acrpull
+{
+  "canDelegate": null,
+  "id": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/venkiacr/providers/Microsoft.Authorization/roleAssignments/c9dfe11e-e0e4-400f-95dd-161279138d79",
+  "name": "c9dfe11e-e0e4-400f-95dd-161279138d79",
+  "principalId": "07b9f9ae-9d2c-4384-ab27-06367ffbe5eb",
+  "resourceGroup": "myResourceGroup",
+  "roleDefinitionId": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
+  "scope": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/venkiacr",
+  "type": "Microsoft.Authorization/roleAssignments"
+}
+
+
+ 
+PS C:\Users\venki\azure-voting-app-redis> az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --service-principal f0891142-b07f-42c5-a0c6-1cf119adadad --client-secret fd3e883c-7f29-4703-a0a3-ba599da2f4a1 --generate-ssh-keys
+{
+  "aadProfile": null,
+  "addonProfiles": null,
+  "agentPoolProfiles": [
+    {
+      "count": 1,
+      "maxPods": 110,
+      "name": "nodepool1",
+      "osDiskSizeGb": 100,
+      "osType": "Linux",
+      "storageProfile": "ManagedDisks",
+      "vmSize": "Standard_DS2_v2",
+      "vnetSubnetId": null
+    }
+  ],
+  "dnsPrefix": "myAKSClust-myResourceGroup-e713cf",
+  "enableRbac": true,
+  "fqdn": "myaksclust-myresourcegroup-e713cf-819e26c5.hcp.eastus.azmk8s.io",
+  "id": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourcegroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myAKSCluster",
+  "kubernetesVersion": "1.12.7",
+  "id": "/subscriptions/e713cf4e-e75d-486e-abde-b3fb35313a96/resourcegroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myAKSCluster",
+  "kubernetesVersion": "1.12.7",
+  "linuxProfile": {
+    "adminUsername": "azureuser",
+    "ssh": {      "publicKeys": [        {
+          "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6MkoYJQUO6GANJNZev/eWFu9AXUoxpCB6ivYLvGT2TXagLr5WHzkmiOeiRjFDelGUk0WCpmxxmNlWv+PKfEM4RzDp2R/d6JegCcleEBnDu69MNIM+HvhKGLVvic1gN0am1IpjjbdRKq7GKkZ8GgBBkyDDNmFRfKw0QDw38OKSDXOF2sRgRT4n7HgmLc6D0NzqM/Q1miwJE4KiAGnx2CQ0lMeN7yBED1LkxmS+WWGGnfW5K0qh9CPicP6LjOP16uShbu1SoCZZPRKLnjS1JwYqMQKMqd/Qpmql8n+QNUlathdmMZhd3VdahXYzEPSBcRbhJSV9L2aznH6V85GF0QFR"
+        }
+      ]
+    }
+  },
+  "location": "eastus",
+  "name": "myAKSCluster",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "dockerBridgeCidr": "172.17.0.1/16",
+    "networkPlugin": "kubenet",
+    "networkPolicy": null,
+    "podCidr": "10.244.0.0/16",
+    "serviceCidr": "10.0.0.0/16"
+  },
+  "nodeResourceGroup": "MC_myResourceGroup_myAKSCluster_eastus",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "myResourceGroup",
+  "servicePrincipalProfile": {
+    "clientId": "f0891142-b07f-42c5-a0c6-1cf119adadad",
+    "secret": null
+  },
+  "tags": null,
+  "type": "Microsoft.ContainerService/ManagedClusters"
+}
+
+
+PS C:\Users\venki\azure-voting-app-redis> az aks install-cli
+Downloading client to "C:\Users\venki\.azure-kubectl\kubectl.exe" from "https://storage.googleapis.com/kubernetes-release/release/v1.14.1/bin/windows/amd64/kubectl.exe"
+
+
+PS C:\Users\venki\azure-voting-app-redis> cd ..
+PS C:\Users\venki> ls
+
+
+    Directory: C:\Users\venki
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        4/24/2019   5:39 AM                .azure
+d-----        4/24/2019   5:23 AM                .azure-kubectl
+d-----        4/25/2019   9:42 AM                .docker
+d-----        4/24/2019   5:48 AM                .kube
+d-----        4/25/2019   4:51 AM                .ssh
+d-----        4/24/2019   5:12 AM                .vscode
+d-r---        4/24/2019   5:09 AM                3D Objects
+d-----        4/25/2019  10:13 AM                azure-voting-app-redis
+d-r---        4/24/2019   5:09 AM                Contacts
+d-r---        4/25/2019  10:51 AM                Desktop
+d-r---        4/24/2019   5:09 AM                Documents
+d-r---        4/25/2019  10:09 AM                Downloads
+d-r---        4/24/2019   5:09 AM                Favorites
+d-r---        4/24/2019   5:09 AM                Links
+d-r---        4/24/2019   5:09 AM                Music
+d-r---        4/24/2019   5:26 AM                Pictures
+d-r---        4/24/2019   5:09 AM                Saved Games
+d-r---        4/24/2019   5:09 AM                Searches
+d-r---        4/24/2019   5:09 AM                Videos
+d-----        4/24/2019   7:00 AM                WINDOWS
+-a----        4/24/2019   5:54 AM           1595 azure_vote.yaml
+
+
+PS C:\Users\venki> az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+Merged "myAKSCluster" as current context in C:\Users\venki\.kube\config
+
+
+PS C:\Users\venki> kubectl get nodes
+NAME                       STATUS    ROLES     AGE       VERSION
+aks-nodepool1-20511284-0   Ready     agent     2h        v1.12.7
