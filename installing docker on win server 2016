@@ -1,0 +1,55 @@
+## open powershell and run command
+
+ Ps:> Install-windowsFeature containers
+ 
+ ## once done restart computer
+ 
+ ps:> Restart-computer
+ 
+ ## Manually create a folder called docker in c drive.
+ C:\Program Files\docker
+ 
+ ## download binaries from the below url and place in the docker folder
+ 
+ https://aka.ms/tp5/b/dockerd
+ https://aka.ms/tp5/b/docker
+ 
+ ## ADD the C:\Program Files\docker path to environment variable so that powershell can pick the docker
+ 
+ PS:> dockerd --register-service
+ 
+ PS:> start-service docker 
+ 
+  PS:> get-service docker 
+  
+  docker info 
+  docker version
+  
+  ## Download a base os images before running conrtainers
+  
+  PS:> Install-packageprovider containerImage -Force
+  
+  PS:> Find-ContainerImage
+  
+  PS:> Install-containerImage windowsServerCore
+  
+  PS:> Restart-service docker
+  
+  docker images
+  
+  ## Tag the images 
+  
+  docker tag "ImageID" windowsservercore:latest
+  
+  docker images
+  
+  docker run -it windowsservercore cmd
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
