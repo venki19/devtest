@@ -53,3 +53,14 @@ docker service rollback busyboxservice
 docker service update --force --args "ping wiki.org" busyboxservice
 docker service inspect busyboxservice
 docker swarm leave --force
+
+
+Docker Service Rolling updates:
+
+## First create a docker network
+
+docker network create -d overlay ps-net 
+
+
+
+
