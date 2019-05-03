@@ -1,0 +1,29 @@
+
+
+docker swarm init
+
+docker swarm join
+
+docker service create 
+
+docker service scale
+
+docker service update
+
+docker stack deploy  
+
+Whats Next
+
+Docker Deep Dive  -- Nigel Poulton
+
+Docker with Devops Automated workflows  -- Nigel Poulton
+
+Docker for webdevelopers -- Dan Wahlin
+
+CD using Docker and Ansible  -- Justin Menga
+
+dockercon 16
+
+
+
+
