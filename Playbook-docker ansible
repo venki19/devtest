@@ -1,0 +1,19 @@
+
+---
+- hosts: all
+  tasks:
+   - name: Installing the update
+     shell: "apt-get update -y"
+
+   - name: Installing docker
+     shell: "apt-get install docker.io -y"
+
+- hosts: Docker-Manager
+  tasks:
+   - name: Joining the docker
+     shell: "docker swarm join --token SWMTKN-1-0nmwy3tlaxeinomvj3f7ijtcx6y9yoo1jaibzfco9qxlm6ctpk-8r2x6uwgn8vul53atbqcb6y3z 192.168.1.4:2377"
+
+- hosts: Docker-Worker
+  tasks:
+   - name: Joining the Worker
+     shell: "docker swarm join --token SWMTKN-1-0nmwy3tlaxeinomvj3f7ijtcx6y9yoo1jaibzfco9qxlm6ctpk-1n01ptvtfnphmv3cnvz21eksa 192.168.1.4:2377"
