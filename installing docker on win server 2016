@@ -45,7 +45,10 @@
   
   docker run -it windowsservercore cmd
   
+  ## Updating Docker 
   
+  Install-Module Dockerprovider -Force
+  Install-Package Docker -ProviderName DockerProvider -Force
   
   
   
